@@ -29,7 +29,7 @@ class DepthLSSTransform(nn.Module):
         zbound = self.model_cfg.ZBOUND
         self.dbound = self.model_cfg.DBOUND
         downsample = self.model_cfg.DOWNSAMPLE
-
+        self.noise = self.model_cfg.Noise
         dx, bx, nx = gen_dx_bx(xbound, ybound, zbound)
         self.dx = nn.Parameter(dx, requires_grad=False)
         self.bx = nn.Parameter(bx, requires_grad=False)
@@ -86,7 +86,18 @@ class DepthLSSTransform(nn.Module):
         frustum = torch.stack((xs, ys, ds), -1)
         
         return nn.Parameter(frustum, requires_grad=False)
-
+    def spatial_alignment_noise(self, ori_pose, severity):
+        '''
+        input: ori_pose 4*4
+        output: noise_pose 4*4
+        '''
+        ct = [0.02, 0.04, 0.06, 0.08, 0.10][severity-1]*2
+        cr = [0.002, 0.004, 0.006, 0.008, 0.10][severity-1]*2
+        r_noise = torch.randn((3, 3), device=ori_pose.device)* cr
+        t_noise = torch.randn((3), device=ori_pose.device) * ct
+        ori_pose[..., :3, :3] += r_noise
+        ori_pose[..., :3, 3]+= t_noise
+        return ori_pose
     def get_geometry(self, camera2lidar_rots, camera2lidar_trans, intrins, post_rots, post_trans, **kwargs):
 
         camera2lidar_rots = camera2lidar_rots.to(torch.float)
@@ -187,10 +198,17 @@ class DepthLSSTransform(nn.Module):
 
         camera_intrinsics = batch_dict['camera_intrinsics']
         camera2lidar = batch_dict['camera2lidar']
+         
         img_aug_matrix = batch_dict['img_aug_matrix']
         lidar_aug_matrix = batch_dict['lidar_aug_matrix']
         lidar2image = batch_dict['lidar2image']
-
+        if not self.training:#test
+            if self.noise:
+                print("spatial_alignment_noise")
+                lidar2image=self.spatial_alignment_noise(lidar2image,5)
+                camera2lidar=self.spatial_alignment_noise(camera2lidar,5)
+            else:
+                print("clean")
         intrins = camera_intrinsics[..., :3, :3]
         post_rots = img_aug_matrix[..., :3, :3]
         post_trans = img_aug_matrix[..., :3, 3]
@@ -238,9 +256,10 @@ class DepthLSSTransform(nn.Module):
                 & (cur_coords[..., 1] >= 0)
             )
             for c in range(on_img.shape[0]):
+                # import pdb; pdb.set_trace()
                 masked_coords = cur_coords[c, on_img[c]].long()
                 masked_dist = dist[c, on_img[c]]
-                depth[b, c, 0, masked_coords[:, 0], masked_coords[:, 1]] = masked_dist
+                depth[b, c, 0, masked_coords[:, 0], masked_coords[:, 1]] = masked_dist #2059
 
         extra_rots = lidar_aug_matrix[..., :3, :3]
         extra_trans = lidar_aug_matrix[..., :3, 3]

@@ -2,6 +2,8 @@ DATASET: 'NuScenesDataset'
 DATA_PATH: '../data/nuscenes'
 
 VERSION: 'v1.0-trainval'
+# VERSION: 'v1.0-mini'
+# VERSION: 'v1.0-test'
 MAX_SWEEPS: 10
 PRED_VELOCITY: True
 SET_NAN_VELOCITY_TO_ZEROS: True
@@ -14,7 +16,10 @@ DATA_SPLIT: {
 
 INFO_PATH: {
     'train': [nuscenes_infos_10sweeps_train.pkl],
+    # 'train': [nuscenes_infos_10sweeps_1_4_train.pkl],
+    # 'train': [nuscenes_infos_10sweeps_1_10_train.pkl],
     'test': [nuscenes_infos_10sweeps_val.pkl],
+    # 'test': [nuscenes_infos_10sweeps_test.pkl],
 }
 
 POINT_CLOUD_RANGE: [-51.2, -51.2, -5.0, 51.2, 51.2, 3.0]

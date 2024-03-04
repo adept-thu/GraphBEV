@@ -4,7 +4,7 @@ from pathlib import Path
 
 import numpy as np
 from tqdm import tqdm
-
+import random
 from ...ops.roiaware_pool3d import roiaware_pool3d_utils
 from ...utils import common_utils
 from ..dataset import DatasetTemplate
@@ -13,7 +13,7 @@ from PIL import Image
 
 
 class NuScenesDataset(DatasetTemplate):
-    def __init__(self, dataset_cfg, class_names, training=True, root_path=None, logger=None):
+    def __init__(self, dataset_cfg, class_names, training=True, root_path=None, logger=None,split=1.0):
         root_path = (root_path if root_path is not None else Path(dataset_cfg.DATA_PATH)) / dataset_cfg.VERSION
         super().__init__(
             dataset_cfg=dataset_cfg, class_names=class_names, training=training, root_path=root_path, logger=logger
@@ -364,6 +364,7 @@ def create_nuscenes_info(version, data_path, save_path, max_sweeps=10, with_cam=
     assert version in ['v1.0-trainval', 'v1.0-test', 'v1.0-mini']
     if version == 'v1.0-trainval':
         train_scenes = splits.train
+
         val_scenes = splits.val
     elif version == 'v1.0-test':
         train_scenes = splits.test
@@ -426,9 +427,9 @@ if __name__ == '__main__':
             with_cam=args.with_cam
         )
 
-        nuscenes_dataset = NuScenesDataset(
-            dataset_cfg=dataset_cfg, class_names=None,
-            root_path=ROOT_DIR / 'data' / 'nuscenes',
-            logger=common_utils.create_logger(), training=True
-        )
-        nuscenes_dataset.create_groundtruth_database(max_sweeps=dataset_cfg.MAX_SWEEPS)
+        # nuscenes_dataset = NuScenesDataset(
+        #     dataset_cfg=dataset_cfg, class_names=None,
+        #     root_path=ROOT_DIR / 'data' / 'nuscenes',
+        #     logger=common_utils.create_logger(), training=True
+        # )
+        # nuscenes_dataset.create_groundtruth_database(max_sweeps=dataset_cfg.MAX_SWEEPS)

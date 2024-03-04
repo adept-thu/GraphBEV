@@ -80,7 +80,7 @@ class QuickCumsumCuda(torch.autograd.Function):
         return x_grad, None, None, None, None, None, None
 
 
-def bev_pool(feats, coords, B, D, H, W):
+def bev_pool(feats, coords, B, D, H, W): #(x, geom_feats, B, self.nx[2], self.nx[0], self.nx[1])
     assert feats.shape[0] == coords.shape[0]
 
     ranks = (

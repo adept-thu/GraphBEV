@@ -85,7 +85,7 @@ MODEL:
         CONVERT_WEIGHTS: True
         INIT_CFG:
             type: Pretrained
-            checkpoint: swint-nuimages-pretrained.pth
+            checkpoint: /home/songziying/workspace/OpenPCDet/checkpoints/swint-nuimages-pretrained.pth
     
     NECK:
         NAME: GeneralizedLSSFPN
@@ -106,6 +106,7 @@ MODEL:
         ZBOUND: [-10.0, 10.0, 20.0]
         DBOUND: [1.0, 60.0, 0.5]
         DOWNSAMPLE: 2
+        Noise: True
     
     FUSER:
         NAME: ConvFuser
@@ -185,8 +186,8 @@ MODEL:
 
 
 OPTIMIZATION:
-    BATCH_SIZE_PER_GPU: 3
-    NUM_EPOCHS: 6
+    BATCH_SIZE_PER_GPU: 2
+    NUM_EPOCHS: 20
 
     OPTIMIZER: adam_cosineanneal
     LR: 0.0001

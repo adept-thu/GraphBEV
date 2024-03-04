@@ -1,0 +1,16 @@
+train
+tail -f nohup.out 
+
+CUDA_VISIBLE_DEVICES=1,2,3  python -m torch.distributed.launch --nproc_per_node=3 ./tools/train.py configs/centerpoint/centerpoint_pillar02_second_secfpn_8xb4-cyclic-20e_nus-3d.py --work_dir ./work_dirs/centerpoint/centerpoint_pillar02_second_secfpn_8xb4-cyclic-20e_nus-3d
+
+CUDA_VISIBLE_DEVICES=1,2,4  nohup ./scripts/dist_train.sh 3 --cfg_file xxxx.yaml >> out. &
+
+CUDA_VISIBLE_DEVICES=0,1,2,5,6,7 nohup python -m torch.distributed.launch --nproc_per_node=6 --master_port 29535 --use_env  train.py --launcher pytorch --batch_size 24 --extra_tag voxel_rcnn_car_focal_multimodal_graph_baseline --cfg_file cfgs/kitti_models/voxel_rcnn_car_focal_multimodal.yaml  --save_to_file &  > nohup.out
+
+CUDA_VISIBLE_DEVICES=1,2,3,4  python -m torch.distributed.launch --nproc_per_node=4 --master_port 29535 --use_env train.py --launcher pytorch --batch_size 48 --extra_tag bevfusion_baseline --cfg_file cfgs/nuscenes_models/bevfusion.yaml  --save_to_file
+CUDA_VISIBLE_DEVICES=4  python -m torch.distributed.launch --nproc_per_node=1 --master_port 29535 --use_env train.py --launcher pytorch --batch_size 12 --extra_tag voxel_rcnn_car_baseline --cfg_file cfgs/kitti_models/voxel_rcnn_car.yaml  --save_to_file
+test
+CUDA_VISIBLE_DEVICES=2,3,4,5,6,7  python -m torch.distributed.launch --nproc_per_node=6 --master_port 29540 test.py --launcher pytorch --batch_size 24 --extra_tag bevfusion_testresulet --cfg_file cfgs/nuscenes_models/bevfusion.yaml --start_epoch 10 --eval_all --save_to_file --ckpt_dir ../output/nuscenes_models/bevfusion/bevfusion_baseline/ckpt
+
+
+

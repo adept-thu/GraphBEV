@@ -12,6 +12,16 @@ from ...utils import loss_utils
 from ..model_utils import centernet_utils
 
 
+
+class CustomLoss(torch.nn.Module):
+    def __init__(self):
+        super(CustomLoss, self).__init__()
+
+    def forward(self, preds, targets):
+        # 示例：计算预测和目标之间的MSE损失
+        return F.mse_loss(preds, targets)
+
+
 class SeparateHead_Transfusion(nn.Module):
     def __init__(self, input_channels, head_channels, kernel_size, sep_head_dict, init_bias=-2.19, use_bias=False):
         super().__init__()
@@ -91,7 +101,7 @@ class TransFusionHead(nn.Module):
         self.loss_bbox_weight = self.model_cfg.LOSS_CONFIG.LOSS_WEIGHTS['bbox_weight']
         self.loss_heatmap = loss_utils.GaussianFocalLoss()
         self.loss_heatmap_weight = self.model_cfg.LOSS_CONFIG.LOSS_WEIGHTS['hm_weight']
-
+        self.custom_loss = CustomLoss()
         self.code_size = 10
 
         # a shared convolution

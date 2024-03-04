@@ -25,8 +25,9 @@ class ConvFuser(nn.Module):
             batch_dict:
                 spatial_features (tensor): Bev features after muli-modal fusion
         """
-        img_bev = batch_dict['spatial_features_img']
-        lidar_bev = batch_dict['spatial_features']
+        # import pdb;pdb.set_trace()
+        img_bev = batch_dict['spatial_features_img'] #[1, 80, 180, 180] (b, c, y, x)
+        lidar_bev = batch_dict['spatial_features'] #[1, 256, 180, 180]
         cat_bev = torch.cat([img_bev,lidar_bev],dim=1)
         mm_bev = self.conv(cat_bev)
         batch_dict['spatial_features'] = mm_bev

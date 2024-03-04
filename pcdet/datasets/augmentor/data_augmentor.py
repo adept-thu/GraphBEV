@@ -2,7 +2,7 @@ from functools import partial
 
 import numpy as np
 from PIL import Image
-
+#from PIL import Transpose
 from ...utils import common_utils
 from . import augmentor_utils, database_sampler
 
@@ -278,7 +278,7 @@ class DataAugmentor(object):
             rotate = np.random.uniform(*config.ROT_LIM)
             # aug images
             if flip:
-                img = img.transpose(method=Image.FLIP_LEFT_RIGHT)
+                img = img.transpose(method=Image.Transpose.FLIP_LEFT_RIGHT)
             img = img.rotate(rotate)
             img_process_info[2] = flip
             img_process_info[3] = rotate

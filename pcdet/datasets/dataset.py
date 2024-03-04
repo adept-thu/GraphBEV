@@ -226,9 +226,11 @@ class DatasetTemplate(torch_data.Dataset):
         batch_size = len(batch_list)
         ret = {}
         batch_size_ratio = 1
-
+        #import pdb;pdb.set_trace()
         for key, val in data_dict.items():
             try:
+                # print(key)
+            #import pdb;pdb.set_trace()
                 if key in ['voxels', 'voxel_num_points']:
                     if isinstance(val[0], list):
                         batch_size_ratio = len(val[0])
@@ -293,9 +295,9 @@ class DatasetTemplate(torch_data.Dataset):
                             pad_width = (pad_h, pad_w)
 
                         image_pad = np.pad(image,
-                                           pad_width=pad_width,
-                                           mode='constant',
-                                           constant_values=pad_value)
+                                            pad_width=pad_width,
+                                            mode='constant',
+                                            constant_values=pad_value)
 
                         images.append(image_pad)
                     ret[key] = np.stack(images, axis=0)
@@ -316,6 +318,7 @@ class DatasetTemplate(torch_data.Dataset):
                 elif key in ['camera_imgs']:
                     ret[key] = torch.stack([torch.stack(imgs,dim=0) for imgs in val],dim=0)
                 else:
+                    #import pdb;pdb.set_trace()
                     ret[key] = np.stack(val, axis=0)
             except:
                 print('Error in collate_batch: key=%s' % key)
