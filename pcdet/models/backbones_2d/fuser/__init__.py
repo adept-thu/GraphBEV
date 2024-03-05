@@ -1,6 +1,6 @@
 from .convfuser import ConvFuser
-from .crossdeformableattention import CrossDeformableAttention
+from .GlobalAlign import GlobalAlign
 __all__ = {
     'ConvFuser':ConvFuser,
-    'CrossDeformableAttention':CrossDeformableAttention
+    'GlobalAlign':GlobalAlign
 }
