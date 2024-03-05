@@ -116,7 +116,7 @@ MODEL:
         K_graph: 25
     
     FUSER:
-        NAME: CrossDeformableAttention
+        NAME: GlobalAlign
         IN_CHANNEL: 336
         OUT_CHANNEL: 256
     
