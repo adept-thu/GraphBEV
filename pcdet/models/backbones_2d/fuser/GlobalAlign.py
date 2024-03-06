@@ -38,12 +38,16 @@ class GlobalAlign(nn.Module):
         
         mm_bev = self.conv(cat_bev) #[1, 256, 180, 180]
         # 生成偏移
-        shift_x = random.randint(0, 5)
-        shift_y = random.randint(0, 5)
+        if  self.training:#train
+            shift_x = random.randint(0, 5)
+            shift_y = random.randint(0, 5)
+        else:
+            shift_x = 0
+            shift_y = 9
         shifted_img_bev = torch.roll(img_bev, shifts=(shift_x, shift_y), dims=(3, 2))
         offset = self.offset_conv(torch.cat([shifted_img_bev, lidar_bev], dim=1)) #torch.Size([1, 2, 180, 180])
         # print(offset.shape)
-        import pdb; pdb.set_trace()
+
         # 将 offset 的维度调整为 [1, 180, 180, 2]
         offset = offset.permute(0, 2, 3, 1) #torch.Size([1, 180, 180, 2])
 
