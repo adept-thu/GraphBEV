@@ -17,10 +17,14 @@ Additionally, global misalignment issues are resolved by dynamically generating 
 
 ------
 
+<div align="justify">  
+
 :fire: Contributions:
 * We propose a robust fusion framework, named GraphBEV, to address feature misalignment arising from projection errors between LiDAR and camera inputs.
 * By deeply analyzing the fundamental causes of feature misalignment, we propose LocalAlign and GlobalAlign modules within our GraphBEV to address local misalignments from imprecise depth and global misalignments between LiDAR and camera BEV features.
 * Extensive experiments validate the effectiveness of our GraphBEV, demonstrating competitive performance on nuScenes. Notably, GraphBEV maintains comparable performance across both clean settings and misaligned noisy conditions.
+
+</div>
 
 # Abstract
 
