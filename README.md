@@ -35,6 +35,7 @@ Integrating LiDAR and camera information into Bird's-Eye-View (BEV) representati
 </div>
 
 # Method
+
 <div align="center">
   <img src="fig/main.png" />
 </div>
@@ -68,6 +69,38 @@ An overview of GraphBEV framework. The LiDAR branch almost follows the baselines
 | BEVfusion-MIT | LC | 65.7 | 60.8 | 132.9 |
 | TransFusion | LC | 70.6 | 66.4 | 164.6 |
 | GraphBEV | LC | 72.0 | 69.1 | 141.0 |
+
+# Dataset Preparation
+
+**NuScenes Dataset** : Please download the [official NuScenes 3D object detection dataset](https://www.nuscenes.org/download) and organize the downloaded files as follows:
+
+```
+OpenPCDet
+├── data
+│   ├── nuscenes
+│   │   │── v1.0-trainval (or v1.0-mini if you use mini)
+│   │   │   │── samples
+│   │   │   │── sweeps
+│   │   │   │── maps
+│   │   │   │── v1.0-trainval  
+├── pcdet
+├── tools
+```
+
+Install the `nuscenes-devkit` with version `1.0.5` by running the following command:
+
+```bash
+pip install nuscenes-devkit==1.0.5
+```
+
+Generate the data infos (for multi-modal setting) by running the following command (it may take several hours):
+
+```bash
+python -m pcdet.datasets.nuscenes.nuscenes_dataset --func create_nuscenes_infos \
+    --cfg_file tools/cfgs/dataset_configs/nuscenes_dataset.yaml \
+    --version v1.0-trainval \
+    --with_cam
+```
 
 # How to introduce misalignment noise into GraphBEV
 
