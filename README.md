@@ -145,6 +145,20 @@ def spatial_alignment_noise(self, ori_pose, severity):
     return ori_pose
 ```
 
+# Requirements
+
+All the codes are tested in the following environment:
+
+* Linux (tested on Ubuntu 14.04/16.04/18.04/20.04/21.04)
+* Python 3.8+
+* torch                     1.12.1+cu113
+* torchaudio              0.12.1+cu113
+* torchvision              0.13.1+cu113
+* scipy                     1.10.1
+* spconv-cu113              2.3.6
+
+All codes are developed based on [OpenPCDet](https://github.com/open-mmlab/OpenPCDet/blob/master/docs/INSTALL.md) .
+
 # Train and Inference
 
 * Training is conducted on 8 NVIDIA GeForce RTX 3090 24G GPUs. 
