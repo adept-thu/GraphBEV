@@ -34,13 +34,7 @@ Additionally, please pay attention to our another work on robustness, [**RoboFus
 
 </div>
 
-# Abstract
 
-<div align="justify"> 
-
-Integrating LiDAR and camera information into Bird's-Eye-View (BEV) representation has emerged as a crucial aspect of 3D object detection in autonomous driving. However, existing methods are susceptible to the inaccurate calibration relationship between LiDAR and the camera sensor. Such inaccuracies result in errors in depth estimation for the camera branch, ultimately causing misalignment between LiDAR and camera BEV features. In this work, we propose a robust fusion framework called GraphBEV. Addressing errors caused by inaccurate point cloud projection, we introduce a LocalAlign module that employs neighbor-aware depth features via Graph matching. Additionally, we propose a GlobalAlign module to rectify the misalignment between LiDAR and camera BEV features. Our GraphBEV framework achieves state-of-the-art performance, with an mAP of 70.1\%, surpassing BEVFusion by 1.6\% on the nuScnes validation set. Importantly, our GraphBEV outperforms BEVFusion by 8.3\% under conditions with misalignment noise.
-
-</div>
 
 # Method
 
