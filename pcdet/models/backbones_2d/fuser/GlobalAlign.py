@@ -14,10 +14,10 @@ class GlobalAlign(nn.Module):
             nn.BatchNorm2d(out_channel),
             nn.ReLU(True)
         )
-        # 偏移生成网络
+
         self.offset_conv = nn.Conv2d(in_channel, 2, kernel_size=3, stride=1, padding=1)
 
-        # 形变卷积
+
         self.deform_conv = nn.Conv2d(out_channel, out_channel, kernel_size=3, stride=1, padding=1)
 
     def forward(self, batch_dict):
@@ -37,7 +37,7 @@ class GlobalAlign(nn.Module):
         cat_bev = torch.cat([img_bev,lidar_bev],dim=1) #torch.Size([1, 336, 180, 180])
         
         mm_bev = self.conv(cat_bev) #[1, 256, 180, 180]
-        # 生成偏移
+
         if  self.training:#train
             shift_x = random.randint(0, 5)
             shift_y = random.randint(0, 5)
@@ -48,14 +48,13 @@ class GlobalAlign(nn.Module):
         offset = self.offset_conv(torch.cat([shifted_img_bev, lidar_bev], dim=1)) #torch.Size([1, 2, 180, 180])
         # print(offset.shape)
 
-        # 将 offset 的维度调整为 [1, 180, 180, 2]
+
         offset = offset.permute(0, 2, 3, 1) #torch.Size([1, 180, 180, 2])
 
-        # 生成形变卷积的权重
+
         deform_weight = F.grid_sample(lidar_bev, offset) #torch.Size([1, 256, 180, 180])
         print(deform_weight.shape)
 
-        # 应用形变卷积
         deformed_feature = self.deform_conv(lidar_bev * deform_weight) #([1, 256, 180, 180])
         batch_dict['spatial_features'] = deformed_feature #([1, 256, 180, 180])
         batch_dict['mm_bev_features'] = mm_bev #([1, 256, 180, 180])
