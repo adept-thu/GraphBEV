@@ -186,6 +186,13 @@ If this work is helpful for your research, please consider citing the following 
   year={2024}
 }
 
+@article{song2024contrastalign,
+  title={ContrastAlign: Toward Robust BEV Feature Alignment via Contrastive Learning for Multi-Modal 3D Object Detection},
+  author={Song, Ziying and Jia, Feiyang and Pan, Hongyu and Luo, Yadan and Jia, Caiyan and Zhang, Guoxin and Liu, Lin and Ji, Yang and Yang, Lei and Wang, Li},
+  journal={arXiv preprint arXiv:2405.16873},
+  year={2024}
+}
+
 @article{song2023graphalign++,
   title={GraphAlign++: An accurate feature alignment by graph matching for multi-modal 3D object detection},
   author={Song, Ziying and Jia, Caiyan and Yang, Lei and Wei, Haiyue and Liu, Lin},
@@ -209,12 +216,7 @@ If this work is helpful for your research, please consider citing the following 
   year={2024}
 }
 
-@article{song2024contrastalign,
-  title={ContrastAlign: Toward Robust BEV Feature Alignment via Contrastive Learning for Multi-Modal 3D Object Detection},
-  author={Song, Ziying and Jia, Feiyang and Pan, Hongyu and Luo, Yadan and Jia, Caiyan and Zhang, Guoxin and Liu, Lin and Ji, Yang and Yang, Lei and Wang, Li},
-  journal={arXiv preprint arXiv:2405.16873},
-  year={2024}
-}
+
 
 ```
 
