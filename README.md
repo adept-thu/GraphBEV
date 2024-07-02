@@ -173,6 +173,49 @@ CUDA_VISIBLE_DEVICES=0 python -m torch.distributed.launch --nproc_per_node=1 --m
 
 * All latency measurements are taken on the same workstation with an A100 GPU.
 
+# Bibtex
+If this work is helpful for your research, please consider citing the following BibTeX entry.
+```
+@article{song2024graphbev,
+  title={Graphbev: Towards robust bev feature alignment for multi-modal 3d object detection},
+  author={Song, Ziying and Yang, Lei and Xu, Shaoqing and Liu, Lin and Xu, Dongyang and Jia, Caiyan and Jia, Feiyang and Wang, Li},
+  journal={arXiv preprint arXiv:2403.11848},
+  year={2024}
+}
+
+@article{song2023graphalign++,
+  title={GraphAlign++: An accurate feature alignment by graph matching for multi-modal 3D object detection},
+  author={Song, Ziying and Jia, Caiyan and Yang, Lei and Wei, Haiyue and Liu, Lin},
+  journal={IEEE Transactions on Circuits and Systems for Video Technology},
+  year={2023},
+  publisher={IEEE}
+}
+
+@inproceedings{song2023graphalign,
+  title={Graphalign: Enhancing accurate feature alignment by graph matching for multi-modal 3d object detection},
+  author={Song, Ziying and Wei, Haiyue and Bai, Lin and Yang, Lei and Jia, Caiyan},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={3358--3369},
+  year={2023}
+}
+
+@article{song2024robofusion,
+  title={Robofusion: Towards robust multi-modal 3d obiect detection via sam},
+  author={Song, Ziying and Zhang, Guoxing and Liu, Lin and Yang, Lei and Xu, Shaoqing and Jia, Caiyan and Jia, Feiyang and Wang, Li},
+  journal={arXiv preprint arXiv:2401.03907},
+  year={2024}
+}
+
+@article{song2024contrastalign,
+  title={ContrastAlign: Toward Robust BEV Feature Alignment via Contrastive Learning for Multi-Modal 3D Object Detection},
+  author={Song, Ziying and Jia, Feiyang and Pan, Hongyu and Luo, Yadan and Jia, Caiyan and Zhang, Guoxin and Liu, Lin and Ji, Yang and Yang, Lei and Wang, Li},
+  journal={arXiv preprint arXiv:2405.16873},
+  year={2024}
+}
+
+```
+
+
 # Acknowledgement
 Many thanks to these excellent open source projects:
 - [BEVFusion-MIT](https://github.com/mit-han-lab/bevfusion) 
