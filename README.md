@@ -18,7 +18,8 @@ Additionally, global misalignment issues are resolved by dynamically generating 
 ------
 
 <div align="justify">  
-:fire: Contributions: Our work has been accepted by ECCV 2024!
+:fire: Our work has been accepted by ECCV 2024!
+
 
 :fire: Contributions:
 * We propose a robust fusion framework, named GraphBEV, to address feature misalignment arising from projection errors between LiDAR and camera inputs.
