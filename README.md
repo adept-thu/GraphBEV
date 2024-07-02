@@ -13,12 +13,13 @@
 
 Additionally, global misalignment issues are resolved by dynamically generating offsets. GraphBEV significantly outperforms BEVFusion on the nuScenes validation set, particularly in the presence of **noisy misalignment**.
 
+:fire: Our work has been accepted by ECCV 2024!
 </div>
 
 ------
 
 <div align="justify">  
-:fire: Our work has been accepted by ECCV 2024!
+
 
 
 :fire: Contributions:
