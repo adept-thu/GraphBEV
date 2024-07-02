@@ -25,6 +25,7 @@ Additionally, global misalignment issues are resolved by dynamically generating 
 :fire: Our team focuses on Robustness of Autonomous driving, and we have summarized a  [**Survey**](https://arxiv.org/abs/2401.06542)  of Robustness.
 Additionally, please pay attention to our another work on robustness, [**RoboFusion**](https://arxiv.org/abs/2401.03907), and its open-source [**repository**](https://github.com/adept-thu/RoboFusion).
 
+------
 
 :fire: Contributions:
 * We propose a robust fusion framework, named GraphBEV, to address feature misalignment arising from projection errors between LiDAR and camera inputs.
