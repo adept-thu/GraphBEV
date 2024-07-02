@@ -9,7 +9,7 @@
 
 <div align="justify">  
 
-  This is the official repository of **GraphBEV**. GraphBEV is designed to address the feature misalignment issue in previous BEV-based methods in real-world scenarios. In order to solve the problem of local misalignment, the **LocalAlign** module is introduced to obtain adjacent depth information through graphics, combined with explicit depth supervision from LiDAR to the camera. Then, the **GlobalAlign** module is proposed to encode the supervised depth and adjacent depth from LiDAR to the camera through dual depth encoding to generate a new reliable depth representation. 
+  This is the official repository of [**GraphBEV**](https://arxiv.org/abs/2403.11848). GraphBEV is designed to address the feature misalignment issue in previous BEV-based methods in real-world scenarios. In order to solve the problem of local misalignment, the **LocalAlign** module is introduced to obtain adjacent depth information through graphics, combined with explicit depth supervision from LiDAR to the camera. Then, the **GlobalAlign** module is proposed to encode the supervised depth and adjacent depth from LiDAR to the camera through dual depth encoding to generate a new reliable depth representation. 
 
 Additionally, global misalignment issues are resolved by dynamically generating offsets. GraphBEV significantly outperforms BEVFusion on the nuScenes validation set, particularly in the presence of **noisy misalignment**.
 
@@ -18,6 +18,7 @@ Additionally, global misalignment issues are resolved by dynamically generating 
 ------
 
 <div align="justify">  
+:fire: Contributions: Our work has been accepted by ECCV 2024!
 
 :fire: Contributions:
 * We propose a robust fusion framework, named GraphBEV, to address feature misalignment arising from projection errors between LiDAR and camera inputs.
