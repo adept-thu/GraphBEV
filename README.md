@@ -1,6 +1,6 @@
 <div align="center">   
 
-  # GraphBEV: Towards Robust BEV Feature Alignment for Multi-Modal 3D Object Detection
+  # [ECCV2024] GraphBEV: Towards Robust BEV Feature Alignment for Multi-Modal 3D Object Detection 
 </div>
 
 <div align="center">
