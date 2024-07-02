@@ -232,3 +232,4 @@ Many thanks to these excellent open source projects:
 - [mmdet3d](https://github.com/open-mmlab/mmdetection3d)
 - [OpenPCDet](https://github.com/open-mmlab/OpenPCDet)
 - [TransFusion](https://github.com/XuyangBai/TransFusion/) 
+- [RoboFusion](https://github.com/adept-thu/RoboFusion) 
