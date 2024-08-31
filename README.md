@@ -165,7 +165,7 @@ All codes are developed based on [OpenPCDet](https://github.com/open-mmlab/OpenP
 
 * Training is conducted on 8 NVIDIA GeForce RTX 3090 24G GPUs. 
 ```bash
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_per_node=8 --master_port 29535  train.py --launcher pytorch --batch_size 24  --extra_tag bevfusion_graph_deformable_result_scenes_K_graph8 --cfg_file cfgs/nuscenes_models/bevfusion_graph_deformable.yaml  --save_to_file 
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_per_node=8 --master_port 29535  train.py --launcher pytorch --batch_size 24  --extra_tag bevfusion_graph_deformable_result_scenes_K_graph8 --cfg_file cfgs/nuscenes_models/bevfusion_graph.yaml  --save_to_file 
 ```
 
 * During inference, we remove Test Time Augmentation (TTA) data augmentation, and the batch size is set to 1 on an A100 GPU.
